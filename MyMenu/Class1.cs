@@ -8,7 +8,7 @@ public class Run
     {
         arr_.Print();
         Console.WriteLine("Enter command");
-        Console.WriteLine("1-Add, 2-Edit, 3-Remove, 4-Search, 5-Sort, 6-Save, 7-Load, 0-Exit");
+        Console.WriteLine("1-Add, 2-Edit, 3-Remove, 4-Search, 5-Sort, 6-Save, 7-Load, 8-Iterator 0-Exit");
     }
 
     public void Start()
@@ -55,6 +55,13 @@ public class Run
                     Console.WriteLine("Enter filename.txt to load");
                     string? str_load = Console.ReadLine();
                     arr_.Load(str_load);
+                    break;
+                case "8":
+                    Console.WriteLine("Lesson 16 Iterator");
+                    foreach (var var in arr_)
+                    {
+                        Console.WriteLine(var);
+                    }
                     break;
                 case "0":
                     stop = false;

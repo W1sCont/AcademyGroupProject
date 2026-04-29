@@ -1,9 +1,12 @@
-﻿namespace lesson15;
+﻿
+using System.Collections; 
+namespace lesson15;
 
-public class AcademyGroup : ICloneable
+public class AcademyGroup : ICloneable, IEnumerable, IEnumerator
 {
     public Student[] arr;
     public int count = 0;
+    private int curpos = -1;
 
     public AcademyGroup()
     {
@@ -155,5 +158,37 @@ public class AcademyGroup : ICloneable
             result.Add((Student)this.arr[i].Clone());
         }
         return result;
+    }
+    
+    // lesson 16 Iterator
+    public IEnumerator GetEnumerator()
+    {
+        return this;
+    }
+    public void Reset()
+    {
+        curpos = -1;
+    }
+    public object Current 
+    {
+        get
+        {
+            return arr[curpos];
+        }
+    }
+    
+    public bool MoveNext()
+    {
+        if (curpos < count)
+        {
+            curpos++;
+            return true;
+        }
+        else
+        {
+            Reset();
+            return false;
+        }
+
     }
 }
