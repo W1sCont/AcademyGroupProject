@@ -1,7 +1,15 @@
-﻿
-using System.Collections; 
+﻿using System;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Soap;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using System.Xml.Serialization;
+using System.Collections;
+using System.IO;
+
 namespace lesson15;
 
+[Serializable]
 public class AcademyGroup : ICloneable, IEnumerable, IEnumerator
 {
     public Student[] arr;
@@ -189,6 +197,64 @@ public class AcademyGroup : ICloneable, IEnumerable, IEnumerator
             Reset();
             return false;
         }
-
     }
+    
+    FileStream? stream = null;
+    SoapFormatter? soap = null;
+    XmlSerializer? serializer = null;
+    DataContractJsonSerializer? jsonFormatter = null;
+
+    public void SaveSoap(string fileName)
+    {
+        stream = new FileStream(fileName, FileMode.Create);
+        soap = new SoapFormatter();
+        soap.Serialize(stream, arr);
+        stream.Close();
+    }
+
+    public void LoadSoap(string fileName)
+    {
+        stream = new FileStream(fileName, FileMode.Open);
+        soap = new SoapFormatter();
+        Student[] arr1 = (Student[])soap.Deserialize(stream);
+        stream.Close();
+        Add(new Student());
+        this.arr = arr1;
+    }
+
+    public void SaveXml(string fileName)
+    {
+        stream = new FileStream(fileName, FileMode.Create);
+        serializer = new XmlSerializer(typeof(Student[]));
+        serializer.Serialize(stream, arr);
+        stream.Close();
+    }
+
+    public void LoadXml(string fileName)
+    {
+        stream = new FileStream(fileName, FileMode.Open);
+        serializer = new XmlSerializer(typeof(Student[]));
+        Student[] arr1 = serializer.Deserialize(stream) as Student[];
+        stream.Close();
+        Add(new Student());
+        this.arr = arr1;
+    }
+    public void SaveJson(string fileName)
+    {
+        stream = new FileStream(fileName, FileMode.Create);
+        jsonFormatter = new DataContractJsonSerializer(typeof(Student[]));
+        jsonFormatter.WriteObject(stream, arr);
+        stream.Close();
+    }
+
+    public void LoadJson(string fileName)
+    {
+        stream = new FileStream(fileName, FileMode.Open);
+        jsonFormatter = new DataContractJsonSerializer(typeof(Student[]));
+        Student[] arr1 = jsonFormatter.ReadObject(stream) as Student[];
+        stream.Close();
+        Add(new Student());
+        this.arr = arr1;
+    }
+    
 }

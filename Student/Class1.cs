@@ -2,7 +2,8 @@
 using System.Collections;
 
 namespace lesson15;
-
+/*
+ [Serializable]
 public class Student : Person, IComparable, ICloneable
 {
     public int GPA { get; set; }
@@ -85,4 +86,5 @@ public class Student : Person, IComparable, ICloneable
         }
     }
     
-}
+} 
+*/
