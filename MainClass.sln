@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademyGroup", "AcademyGrou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu", "MyMenu\MyMenu.csproj", "{29C4B8FE-6ECA-479B-B7FC-7B89290CA95E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademyGroupReflex", "AcademyGroupReflex\AcademyGroupReflex.csproj", "{80F05884-D806-40CD-93B1-8EFBD15BC21A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{29C4B8FE-6ECA-479B-B7FC-7B89290CA95E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29C4B8FE-6ECA-479B-B7FC-7B89290CA95E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29C4B8FE-6ECA-479B-B7FC-7B89290CA95E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F05884-D806-40CD-93B1-8EFBD15BC21A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F05884-D806-40CD-93B1-8EFBD15BC21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F05884-D806-40CD-93B1-8EFBD15BC21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F05884-D806-40CD-93B1-8EFBD15BC21A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

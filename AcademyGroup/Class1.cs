@@ -216,10 +216,20 @@ public class AcademyGroup : ICloneable, IEnumerable, IEnumerator
     {
         stream = new FileStream(fileName, FileMode.Open);
         soap = new SoapFormatter();
-        Student[] arr1 = (Student[])soap.Deserialize(stream);
+        Student[] loadedStudents = (Student[])soap.Deserialize(stream);
+        if (loadedStudents != null)
+        {
+            this.arr = new Student[loadedStudents.Length];
+            Array.Resize(ref this.arr, loadedStudents.Length);
+            Array.Copy(loadedStudents, this.arr, loadedStudents.Length);
+            int realCount = 0;
+            foreach (var v in loadedStudents)
+            {
+                if(v != null) realCount++;
+            }
+            this.count = realCount;
+        }
         stream.Close();
-        Add(new Student());
-        this.arr = arr1;
     }
 
     public void SaveXml(string fileName)
@@ -234,10 +244,20 @@ public class AcademyGroup : ICloneable, IEnumerable, IEnumerator
     {
         stream = new FileStream(fileName, FileMode.Open);
         serializer = new XmlSerializer(typeof(Student[]));
-        Student[] arr1 = serializer.Deserialize(stream) as Student[];
+        Student[] loadedStudents = serializer.Deserialize(stream) as Student[];
+        if (loadedStudents != null)
+        {
+            this.arr = new Student[loadedStudents.Length];
+            Array.Resize(ref this.arr, loadedStudents.Length);
+            Array.Copy(loadedStudents, this.arr, loadedStudents.Length);
+            int realCount = 0;
+            foreach (var v in loadedStudents)
+            {
+                if(v != null) realCount++;
+            }
+            this.count = realCount;
+        }
         stream.Close();
-        Add(new Student());
-        this.arr = arr1;
     }
     public void SaveJson(string fileName)
     {
@@ -251,10 +271,20 @@ public class AcademyGroup : ICloneable, IEnumerable, IEnumerator
     {
         stream = new FileStream(fileName, FileMode.Open);
         jsonFormatter = new DataContractJsonSerializer(typeof(Student[]));
-        Student[] arr1 = jsonFormatter.ReadObject(stream) as Student[];
+        Student[] loadedStudents = jsonFormatter.ReadObject(stream) as Student[];
+        if (loadedStudents != null)
+        {
+            this.arr = new Student[loadedStudents.Length];
+            Array.Resize(ref this.arr, loadedStudents.Length);
+            Array.Copy(loadedStudents, this.arr, loadedStudents.Length);
+            int realCount = 0;
+            foreach (var v in loadedStudents)
+            {
+                if(v != null) realCount++;
+            }
+            this.count = realCount;
+        }
         stream.Close();
-        Add(new Student());
-        this.arr = arr1;
     }
     
 }
